@@ -192,7 +192,7 @@ html, body {
   .keypad-btn:hover { border-color: var(--primary); color: var(--primary); }
 }
 .keypad-btn:active { transform: scale(0.97); background: #f0f3ff; }
-.keyboard-hint { color: var(--muted); font-size: 13px; margin-top: 13px; }
+.keyboard-hint { color: var(--muted); font-size: 15px; margin-top: 14px; }
 
 .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
 .basic-metric-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 18px 0 28px 0; }
@@ -201,25 +201,25 @@ html, body {
 
 .profile-section { margin-top: 8px; padding: 22px; border: 1px solid #dfe4ff; background: #f7f8ff; border-radius: 18px; }
 .profile-section-title { font-size: 18px; font-weight: 750; margin-bottom: 4px; }
-.profile-section-note { color: var(--muted); font-size: 13px; line-height: 1.5; margin-bottom: 16px; }
+.profile-section-note { color: var(--muted); font-size: 14.5px; line-height: 1.5; margin-bottom: 16px; }
 .profile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .profile-card {
   background: #ffffff; border: 1px solid #d9def7; border-radius: 16px;
   padding: 18px 16px; position: relative; overflow: hidden;
 }
 .profile-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--primary); }
-.profile-card .metric-label { font-size: 13px; font-weight: 650; color: #59617a; }
+.profile-card .metric-label { font-size: 14.5px; font-weight: 650; color: #59617a; }
 .profile-card .metric-value { font-size: 29px; margin-top: 3px; }
 .profile-card .small-note { margin-top: 6px; }
 
 .metric-card { border: 1px solid var(--line); background: #fafbfc; border-radius: 14px; padding: 16px; }
-.metric-label { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+.metric-label { color: var(--muted); font-size: 13.5px; margin-bottom: 6px; }
 .metric-value { font-size: 25px; font-weight: 760; }
 
 .save-ok { background: #ecfdf3; color: #087443; border: 1px solid #abefc6; padding: 12px 14px; border-radius: 12px; margin: 14px 0; }
 .save-error { background: #fef3f2; color: #b42318; border: 1px solid #fecdca; padding: 12px 14px; border-radius: 12px; margin: 14px 0; }
 
-.small-note { color: var(--muted); font-size: 13px; line-height: 1.55; }
+.small-note { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
 
 /* Kurva performa (padanan renderPlot) */
 .plot-wrap { position: relative; width: 100%; height: 330px; margin-bottom: 10px; }
@@ -228,17 +228,17 @@ html, body {
 .plot-tip {
   position: absolute; pointer-events: none; display: none;
   background: #fff; color: var(--text); border: 1px solid var(--line); border-radius: 10px;
-  padding: 7px 10px; font-size: 12px; line-height: 1.5; white-space: nowrap;
+  padding: 7px 10px; font-size: 13px; line-height: 1.5; white-space: nowrap;
   box-shadow: 0 6px 18px rgba(24, 39, 75, 0.12);
 }
-.plot-tip strong { display: block; font-size: 12px; }
+.plot-tip strong { display: block; font-size: 13px; }
 .plot-tip .tip-row { color: var(--muted); }
 .plot-tip .tip-row b { color: var(--text); font-weight: 650; }
 
 .table-view { margin: 4px 0 14px 0; }
-.table-view summary { color: var(--muted); font-size: 13px; }
+.table-view summary { color: var(--muted); font-size: 14.5px; }
 .table-scroll { overflow-x: auto; margin-top: 10px; }
-.interval-table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+.interval-table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
 .interval-table th, .interval-table td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
 .interval-table th { color: var(--muted); font-weight: 600; }
 .interval-table th:first-child, .interval-table td:first-child { text-align: left; }
@@ -560,6 +560,9 @@ html, body {
   }
 
   function setPage(page) {
+    // Notifikasi dari halaman sebelumnya tidak boleh menutupi keypad.
+    var panel = document.getElementById('notification-panel');
+    if (panel) panel.innerHTML = '';
     state.page = page;
     render();
     window.scrollTo(0, 0);
@@ -908,7 +911,7 @@ html, body {
     var meanC = mean(ys);
     var fit = linearFit(xs, ys);
     var font = '12px Arial, Helvetica, sans-serif';
-    var legendFont = '10.2px Arial, Helvetica, sans-serif';
+    var legendFont = '11.5px Arial, Helvetica, sans-serif';
 
     var xTicks = [1];
     for (var t = 5; t <= TEST_INTERVALS; t += 5) xTicks.push(t);
@@ -919,7 +922,7 @@ html, body {
 
     var s = [];
     s.push('<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H +
-      '" role="img" aria-label="' + esc(label) + '" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000">');
+      '" role="img" aria-label="' + esc(label) + '" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000">');
     s.push('<defs><clipPath id="wc-plot-clip"><rect x="' + f(px0) + '" y="' + f(py0) + '" width="' + f(px1 - px0) +
       '" height="' + f(py1 - py0) + '"/></clipPath></defs>');
     s.push('<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="#fff"/>');
@@ -978,14 +981,14 @@ html, body {
       { text: 'Trend linear', dash: '8 8', width: 2 },
       { text: 'Rata-rata', dash: '1 3', width: 1 }
     ];
-    var xchar = 0.85 * 0.15 * 72, ychar = 0.85 * 0.2 * 72;
+    var xchar = 0.96 * 0.15 * 72, ychar = 0.96 * 0.2 * 72;
     var maxW = Math.max.apply(null, legendItems.map(function (it) { return textWidth(it.text, legendFont); }));
     var legLeft = px1 - (maxW + 4.5 * xchar);
     legendItems.forEach(function (it, i) {
       var yy = py0 + ychar * (i + 1);
       s.push('<line x1="' + f(legLeft + xchar) + '" x2="' + f(legLeft + 3 * xchar) + '" y1="' + f(yy) + '" y2="' + f(yy) +
         '" stroke="#000" stroke-width="' + it.width + '" stroke-dasharray="' + it.dash + '"/>');
-      s.push('<text x="' + f(legLeft + 4 * xchar) + '" y="' + f(yy) + '" dy="0.35em" font-size="10.2">' + esc(it.text) + '</text>');
+      s.push('<text x="' + f(legLeft + 4 * xchar) + '" y="' + f(yy) + '" dy="0.35em" font-size="11.5">' + esc(it.text) + '</text>');
     });
 
     // Lapisan hover
